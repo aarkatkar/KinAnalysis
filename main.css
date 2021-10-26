@@ -20,13 +20,12 @@ table, th, td {
 }
 
 table{
-	grid-row: 5;
-	margin-top: 10px;
+	grid-row: 6;
 }
 
 .instructions{
 	grid-row:4;
-	background: #eeeeee;
+	background: #cceecc;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
@@ -45,7 +44,7 @@ table{
 }
 
 .starttext{
-	background: #eeeeee;
+	background: #cceecc;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
@@ -58,7 +57,7 @@ table{
 }
 
 .loadblock{
-	background: #eeeeee;
+	background: #cceecc;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
@@ -84,15 +83,25 @@ table{
 	grid-template-columns: 1fr 1fr 1fr
 }
 
-.startbutton{
-	font-size: 14pt;
+.zoomButton{
+	font-size:18pt;
+	margin-bottom:15px;
+	background: #ff8888;
+}
+.zoomButton:hover{
+	cursor:pointer;
+	background:white;
 }
 .header{
 	grid-column:1 / span 3;
 }
 .graph{
-	grid-row: 3 / span 3;
+	grid-row: 3 / span 7;
 	grid-column: 2 / span 2;
+}
+
+.verify{
+	margin:0;
 }
 
 @keyframes fall{
