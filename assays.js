@@ -3,6 +3,7 @@ const csvFile = document.getElementById("csvFile");
 csvFile.addEventListener("input", loadData)
 
 var arrayRes
+var zoomState = 0
 				  
 function loadData(e){
 	e.preventDefault();
@@ -18,14 +19,19 @@ function loadData(e){
 		var maxY = data["y"].reduce(function(a,b){
 			return Math.max(a,b);
 		},0);
-		
+		var dragmode_ 
+		if (zoomState==0){
+			dragmode_ = "pan"
+		}else{
+			dragmode_ = "select"
+		}
 		var layout = {
 		autosize: false,
 		hovermode: "closest",
 		showlegend: false,
 		margin:{t:50, l:50, r:50, b:50
 		},
-		dragmode:"pan",
+		dragmode:dragmode_,
 		width: 2 * document.getElementById("loader").offsetWidth,
 		xaxis:{
 			range:[0,maxX],
@@ -47,7 +53,7 @@ function loadData(e){
 		{x:[0, maxX*1.5], y:[0,0], mode:"lines",line:{color:"red"}}];
 		GRAPH = document.getElementById("graph");
 		Plotly.newPlot("graph", xydata, layout, {modeBarButtonsToRemove:["autoScale2d", "toggleSpikelines",
-		"hoverClosestCartesian", "hoverCompareCartesian", "toImage", "lasso2d", "zoomIn2d", "zoomOut2d", "resetScale2d","zoom2d"], displayModeBar:true,displaylogo:false, scrollZoom:true});
+		"hoverClosestCartesian", "hoverCompareCartesian", "toImage", "lasso2d", "resetScale2d","zoom2d", "pan2d", "select2d"], displayModeBar:true,displaylogo:false, scrollZoom:true});
 		GRAPH.on('plotly_selected', function(eventData) {
 		  var x = [];
 		  var y = [];
@@ -61,11 +67,12 @@ function loadData(e){
 		  xydata[2]["y"][0] = linReg["intercept"];
 		  xydata[2]["y"][1] = linReg["intercept"] + xydata[2]["x"][1]*linReg["slope"];
 		  arrayRes = xydata[2];
+		  Plotly.redraw("graph");
 		  document.getElementById("start").textContent = x[0];
 		  document.getElementById("end").textContent = x[x.length-1];
-		  document.getElementById("slope").textContent = (linReg["slope"]*60).toFixed(5);
-		  document.getElementById("devi").textContent = quadReg;
-		  Plotly.redraw("graph");
+		  document.getElementById("slope").textContent = Math.abs((linReg["slope"]*60).toFixed(5));
+		  document.getElementById("ndata").textContent = "# Data Points: "+x.length;
+		  document.getElementById("devi").textContent = "Curvature: "+quadReg;
 		});
       };
 
@@ -83,6 +90,25 @@ function findSlope(eventData){
   var linReg = linearRegression(y,x)
   
 }
+
+function zoomZoom(){
+	var GRAPH = document.getElementById("graph");
+	var zoomInt = document.getElementById("zoomInt")
+	var zoomButt = document.getElementById("zoomButt")
+	if (zoomState == 0){
+		Plotly.relayout(GRAPH, {dragmode:"select"})
+		zoomInt.textContent = "Click and drag a box around the linear region of an assay. The table below will update with your values. Click \"Adjust View\" to adjust the view."
+		zoomButt.textContent = "Adjust View"
+		
+	} else{
+		Plotly.relayout(GRAPH, {dragmode:"pan"})
+		zoomInt.textContent = "Click and drag to move around the graph. Scroll up and down to zoom. Click \"Analyze\" when you are ready to analyze an assay."
+		zoomButt.textContent = "Analyze"
+	};
+	zoomState = 1 - zoomState;
+	
+}
+
 function linearRegression(y,x){
         var lr = {};
         var n = y.length;
