@@ -27,29 +27,30 @@
 			</p>
 			<div class="loadblock" id="loader">
 				<form id="myForm">
-					<h3> Upload your .csv file </h3>
+					<p style="margin:0"> <b>Upload</b> your .csv file </p>
 					<br/>
 					<input type="file" id="csvFile" class="startbutton"/>
 				</form>
 				<script type="text/javascript" src="assays.js"></script>
 
 			</div>
-			<p class="instructions"> <b>Zoom in/out </b>by scrolling up/down with your mousewheel or touchpad. You can zoom in/out on a specific axis by scrolling while the cursor is above that axis. Double-click to zoom back out.<br/> <b>Pan</b> around the graph by selecting the &#10021; icon in the top right of the graph and clicking and dragging around<br/><b>Analyze an assay</b> by selecting the &#11034; icon in the top right of the graph and clicking and dragging a box around the linear region of the assay.</p>
+			<p class="instructions" id="zoomInt">Click and drag to move around the graph. Scroll up and down to zoom. Click "Analyze" when you are ready to analyze an assay.</p>
+			<button onclick="zoomZoom()" id="zoomButt" class="zoomButton">Analyze</button>
 			<div id="graph", class="graph"></div>
 			<table id="datatable">
 				<tr>
 					<th>Start (s)</th>
 					<th>End (s)</th>
 					<th>&Delta;A/min</th>
-					<th>Curvature (%)</th>
 				</tr>
 				<tr>
 					<td id="start">-</th>
 					<td id="end">-</th>
 					<td id="slope">-</th>
-					<td id="devi">-</th>
 				</tr>
 			</table>
+			<p id="ndata" class="verify"># Data Points:</p>
+			<p id="devi" class="verify">Curvature:</p>
 		</div>
 		
 	</div>
