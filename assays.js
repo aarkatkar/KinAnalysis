@@ -27,7 +27,7 @@ function loadData(e){
 		}
 		var layout = {
 		autosize: false,
-		hovermode: "closest",
+		hovermode: false,
 		showlegend: false,
 		margin:{t:50, l:50, r:50, b:50
 		},
