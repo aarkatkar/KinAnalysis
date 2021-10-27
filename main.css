@@ -21,11 +21,12 @@ table, th, td {
 
 table{
 	grid-row: 6;
+	border-width:2px;
 }
 
 .instructions{
 	grid-row:4;
-	background: #cceecc;
+	background: #C5E0B4;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
@@ -33,6 +34,7 @@ table{
 	border-radius:15px;
 	padding:15px;
 	font-family:Cambria;
+	border-style:solid;
 }
 .container{
 	max-width: 100%;
@@ -44,7 +46,7 @@ table{
 }
 
 .starttext{
-	background: #cceecc;
+	background: #C5E0B4;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
@@ -52,18 +54,20 @@ table{
 	border-radius:15px;
 	padding:15px;
 	grid-column: 1 / span 3;
+	border-style:solid;
 	
 	
 }
 
 .loadblock{
-	background: #cceecc;
+	background: #C5E0B4;
 	position: relative;
 	left: 50%;
 	transform: translate(-50%, 0%);	
 	padding: 10px;
 	border-radius:15px;
 	padding:15px;
+	border-style:solid;
 	
 }
 
@@ -87,6 +91,8 @@ table{
 	font-size:18pt;
 	margin-bottom:15px;
 	background: #ff8888;
+	border-style:solid;
+	border-color:black;
 }
 .zoomButton:hover{
 	cursor:pointer;
