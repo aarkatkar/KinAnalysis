@@ -53,7 +53,7 @@ function loadData(e){
 		{x:[0, maxX*1.5], y:[0,0], mode:"lines",line:{color:"red"}}];
 		GRAPH = document.getElementById("graph");
 		Plotly.newPlot("graph", xydata, layout, {modeBarButtonsToRemove:["autoScale2d", "toggleSpikelines",
-		"hoverClosestCartesian", "hoverCompareCartesian", "toImage", "lasso2d", "resetScale2d","zoom2d", "pan2d", "select2d"], displayModeBar:true,displaylogo:false, scrollZoom:true});
+		"hoverClosestCartesian", "hoverCompareCartesian", "lasso2d", "resetScale2d","zoom2d", "pan2d", "select2d"], displayModeBar:true,displaylogo:false, scrollZoom:true});
 		GRAPH.on('plotly_selected', function(eventData) {
 		  var x = [];
 		  var y = [];
