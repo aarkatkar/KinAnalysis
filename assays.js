@@ -170,7 +170,7 @@ function csvToArray(str, delimiter = ",") {
 }
 
 function successFunction(data) {
-  var allRows = data.split(/\r?\n|\r/);
+  var allRows = data.split(/\r?[\n\r]?[\n\r]/);
   var record = false
   var x = []
   var y = []
